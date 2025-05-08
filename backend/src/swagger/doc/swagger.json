@@ -1,0 +1,301 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Employee Management System API",
+      "description": "API for user authentication and employee management"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Auth",
+        "description": "Authentication endpoints"
+      },
+      {
+        "name": "Employees",
+        "description": "Employee management endpoints"
+      }
+    ],
+    "schemes": ["http"],
+    "securityDefinitions": {
+      "bearerAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+      "/auth/signup": {
+        "post": {
+          "tags": ["Auth"],
+          "summary": "Create a new user",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.doe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password123!"
+                  },
+                  "confirmPassword": {
+                    "type": "string",
+                    "example": "Password123!"
+                  },
+                  "role": {
+                    "type": "string",
+                    "example": "admin"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User created successfully"
+            },
+            "400": {
+              "description": "Validation error or existing email"
+            }
+          }
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "tags": ["Auth"],
+          "summary": "Log in a user",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "john.doe@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Password123!"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Login successful"
+            },
+            "401": {
+              "description": "Invalid email or password"
+            }
+          }
+        }
+      },
+      "/employees/addEmployee": {
+        "post": {
+          "tags": ["Employees"],
+          "summary": "Add a new employee",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Jane Smith"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "jane.smith@example.com"
+                  },
+                  "role": {
+                    "type": "string",
+                    "example": "Developer"
+                  },
+                  "nationalId": {
+                    "type": "string",
+                    "example": "1234567890"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Employee created successfully"
+            },
+            "400": {
+              "description": "Employee already exists or invalid data"
+            }
+          }
+        }
+      },
+      "/employees/getEmployees": {
+        "get": {
+          "tags": ["Employees"],
+          "summary": "Get all employees",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "page",
+              "in": "query",
+              "type": "integer",
+              "description": "Page number for pagination",
+              "example": 1
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "type": "integer",
+              "description": "Number of items per page",
+              "example": 10
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of employees"
+            }
+          }
+        }
+      },
+      "/employees/getEmployeeById/{id}": {
+        "get": {
+          "tags": ["Employees"],
+          "summary": "Get an employee by ID",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "Employee ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Employee found"
+            },
+            "404": {
+              "description": "Employee not found"
+            }
+          }
+        }
+      },
+      "/employees/updateEmployee/{id}": {
+        "put": {
+          "tags": ["Employees"],
+          "summary": "Update an employee",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "Employee ID"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Jane Doe"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "jane.doe@example.com"
+                  },
+                  "role": {
+                    "type": "string",
+                    "example": "Manager"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Employee updated successfully"
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "404": {
+              "description": "Employee not found"
+            }
+          }
+        }
+      },
+      "/employees/deleteEmployee/{id}": {
+        "delete": {
+          "tags": ["Employees"],
+          "summary": "Delete an employee",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "description": "Employee ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Employee deleted successfully"
+            },
+            "404": {
+              "description": "Employee not found"
+            }
+          }
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,14 @@
+  {
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "strict": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "esModuleInterop": true,
+      "resolveJsonModule": true, // ✅ allow importing JSON files
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src"] // ✅ make sure TypeScript watches your source folder
+  }
+  
