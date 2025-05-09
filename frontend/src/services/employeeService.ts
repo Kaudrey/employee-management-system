@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Employee } from "../types";
 
-const API = "http://localhost:5000";
+const API = "http://localhost:5050";
 
 const config = () => ({
   headers: {

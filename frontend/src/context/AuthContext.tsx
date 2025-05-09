@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
-import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
+
 
 type User = { email: string };
 interface AuthContextType {

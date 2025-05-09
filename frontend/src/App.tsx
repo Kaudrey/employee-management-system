@@ -8,13 +8,11 @@ import { AuthProvider } from "./context/AuthContext";
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/add" element={<ProtectedRoute><AddEmployee /></ProtectedRoute>} />
-          <Route path="/employees" element={<ProtectedRoute><EmployeeList /></ProtectedRoute>} />
+          {/* <Route path="/add" element={<ProtectedRoute><AddEmployee /></ProtectedRoute>} />
+          <Route path="/employees" element={<ProtectedRoute><EmployeeList /></ProtectedRoute>} /> */}
         </Routes>
-      </BrowserRouter>
     </AuthProvider>
   );
 }
