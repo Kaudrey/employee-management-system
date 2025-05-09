@@ -2,7 +2,7 @@ export interface Employee {
     id: number;
     firstname: string;
     lastname: string;
-    national_identity: string;
+    nationalId: string;
     telephone: string;
     email: string;
     department: string;
@@ -10,5 +10,6 @@ export interface Employee {
     manufacturer: string;
     model: string;
     serialNumber: string;
+    createdAT: string;
   }
   

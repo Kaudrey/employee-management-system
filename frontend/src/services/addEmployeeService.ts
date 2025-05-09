@@ -9,10 +9,10 @@ const config = () => ({
   }
 });
 
-const getEmployees = async (page = 1): Promise<Employee[]> => {
-  const res = await axios.get(`${API}/getEmployees?page=${page}`, config());
-  return res.data.data;
+
+
+const addEmployee = async (data: Partial<Employee>) => {
+  return await axios.post(`${API}/addEmployee`, data, config());
 };
 
-
-export default { getEmployees };
+export default {addEmployee };

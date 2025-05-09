@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Employee } from "../types";
-import employeeService from "../services/employeeService";
+import employeeService from "../services/addEmployeeService";
 import { useNavigate } from "react-router-dom";
 
 const initialForm: Partial<Employee> = {
   firstname: "",
   lastname: "",
-  national_identity: "",
+  nationalId: "",
   telephone: "",
   email: "",
   department: "",

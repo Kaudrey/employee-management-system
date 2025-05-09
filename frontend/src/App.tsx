@@ -10,9 +10,10 @@ export default function App() {
     <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/add" element={<ProtectedRoute><AddEmployee /></ProtectedRoute>} />
-          <Route path="/employees" element={<ProtectedRoute><EmployeeList /></ProtectedRoute>} /> */}
+          <Route path="/add" element={<ProtectedRoute><AddEmployee /></ProtectedRoute>} />
+          <Route path="/employees" element={<ProtectedRoute><EmployeeList /></ProtectedRoute>} />
         </Routes>
+
     </AuthProvider>
   );
 }
